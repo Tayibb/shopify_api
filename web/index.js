@@ -46,6 +46,19 @@ app.get("/api/products/count", async (_req, res) => {
   res.status(200).send(countData);
 });
 
+// ---------------------- Products ---------------------------------------
+app.get("/api/products/8456286961944", async (_req, res) => {
+  try {
+    const response = await shopify.api.rest.Product.all({
+      session: res.locals.shopify.session,
+      id: 8456286961944,
+    });
+    res.status(200).send(response)
+  } catch (err) {
+    res.status(500).send(err)
+  }
+})
+
 // ---------------------- Collections ---------------------------------------
 app.get("/api/collections/453073273112", async (_req, res) => {
   try {
